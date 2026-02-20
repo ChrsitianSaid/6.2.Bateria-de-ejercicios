@@ -80,5 +80,78 @@ classDiagram
 
 <img width="651" height="667" alt="image" src="https://github.com/user-attachments/assets/03e66861-77b1-4f8b-8331-24916f3273fc" />
 
+Ejercicio 5 (2,5 puntos)
+Supuesto: Sistema de pagos.
 
+Crea una interfaz MetodoPago con el método procesar(double importe).
+Las clases Tarjeta y Paypal deben implementar dicho contrato.
+La clase Carrito tiene un método pagar(MetodoPago miMetodo) (Uso puntual).
+
+classDiagram
+    class MetodoPago {
+        <<interface>>
+        +procesar(importe : double)
+    }
+
+    class Tarjeta {
+    }
+
+    class Paypal {
+    }
+
+    class Carrito {
+        +pagar(miMetodo : MetodoPago)
+    }
+
+    MetodoPago <|.. Tarjeta
+    MetodoPago <|.. Paypal
+    Carrito --> MetodoPago : usa
+
+
+<img width="379" height="573" alt="image" src="https://github.com/user-attachments/assets/3c86a164-2532-4b6b-a6d2-1d6e597abc82" />
+
+Ejercicio 6  (3 puntos)
+Supuesto: Sistema de Gestión de una Biblioteca Universitaria
+
+Contexto: La biblioteca necesita un sistema básico para gestionar su catálogo de recursos y los préstamos a los usuarios.
+
+Requisitos del diseño (UML):
+
+Clase Recurso (Padre):
+Atributos: id (int) y titulo (String), ambos privados.
+Métodos: prestar() y devolver(), ambos públicos.
+Clases Libro y Revista (Hijas):
+Ambas son tipos de Recurso (herencia).
+Libro tiene un atributo propio: isbn (String).
+Revista tiene un atributo propio: numeroEdicion (int).
+Clase Usuario:
+Atributos: nombre (String) y numCarnet (int).
+Relación: Un Usuario puede tener uno o varios Recurso prestados en un momento dado (1 a 0..*).
+
+classDiagram
+    class Recurso {
+        -id : int
+        -titulo : String
+        +prestar()
+        +devolver()
+    }
+
+    class Libro {
+        isbn : String
+    }
+
+    class Revista {
+        numeroEdicion : int
+    }
+
+    class Usuario {
+        nombre : String
+        numCarnet : int
+    }
+
+    Recurso <|-- Libro
+    Recurso <|-- Revista
+
+    Usuario "1" --> "0..*" Recurso : presta
+<img width="445" height="603" alt="image" src="https://github.com/user-attachments/assets/b609cccf-7857-4d5f-9e36-d253ef4edc0a" />
 
